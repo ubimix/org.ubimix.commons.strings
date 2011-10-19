@@ -94,8 +94,8 @@ public class MessageUtil {
     /**
      * Cache of message objects corresponding to each type. This is a weak map
      * and this cache don't prevent classes from the garbage collection. So if a
-     * class does not used anymore the corresponding message proxy can be
-     * garbage collected as well.
+     * class is not used anymore the corresponding message proxy can be garbage
+     * collected as well.
      */
     private static Map<Class<?>, Object> fMessages = new WeakHashMap<Class<?>, Object>();
 
@@ -148,8 +148,9 @@ public class MessageUtil {
              */
             private ResourceBundle getResourceBundle() {
                 Locale locale = fLocale.get();
-                if (locale == null)
+                if (locale == null) {
                     locale = Locale.getDefault();
+                }
                 ResourceBundle bundle = fMap.get(locale);
                 if (bundle == null) {
                     ClassLoader loader = cls.getClassLoader();
@@ -180,8 +181,9 @@ public class MessageUtil {
                         value = MessageFormat.format(value, args);
                     }
                 }
-                if (value == null)
+                if (value == null) {
                     value = key;
+                }
                 return value;
             }
 
